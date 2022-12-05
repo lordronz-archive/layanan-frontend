@@ -2,6 +2,17 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 
 import ColorModeToggle from '@/components/ColorModeToggle';
+import UnstyledLink from '@/components/links/UnstyledLink';
+
+type Links = {
+  href: string;
+  label: string;
+}[];
+
+const links: Links = [
+  { href: '/login', label: 'Login' },
+  { href: '/register', label: 'Register' },
+];
 
 const Header = (): JSX.Element => {
   const { theme, setTheme } = useTheme();
@@ -19,6 +30,16 @@ const Header = (): JSX.Element => {
                 Home
               </Link>
             </li>
+            {links.map(({ href, label }) => (
+              <li key={`${href}${label}`} className='hidden md:list-item'>
+                <UnstyledLink
+                  href={href}
+                  className='transition-all duration-200 hover:text-primary-300'
+                >
+                  {label}
+                </UnstyledLink>
+              </li>
+            ))}
           </ul>
         </li>
         <li className='z-10'>

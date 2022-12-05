@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button } from '@mui/material';
 import {
   Autocomplete,
   DirectionsRenderer,
@@ -296,9 +295,8 @@ const Home: NextPage = () => {
                       </div>
                     ))}
                     {destinationCnt < 9 && (
-                      <Button
-                        className='flex w-full items-center justify-center rounded-xl'
-                        variant='contained'
+                      <button
+                        className='text-light flex w-full items-center justify-center rounded-xl bg-green-600 py-2 hover:bg-green-700 active:bg-green-800 disabled:cursor-not-allowed disabled:opacity-60'
                         color='success'
                         onClick={() => {
                           setDestinationCnt((v) => v + 1);
@@ -307,18 +305,17 @@ const Home: NextPage = () => {
                         disabled={loading}
                       >
                         <FiPlus />
-                      </Button>
+                      </button>
                     )}
-                    <Button
-                      className='flex w-full items-center justify-center rounded-xl'
-                      variant='contained'
+                    <button
+                      className='text-light flex w-full items-center justify-center rounded-xl bg-blue-600 py-2 hover:bg-blue-700 active:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60'
                       onClick={() => {
                         onSubmit();
                       }}
                       disabled={loading}
                     >
                       Submit
-                    </Button>
+                    </button>
                   </div>
                 </div>
                 <div className='flex w-full items-center justify-center'>
