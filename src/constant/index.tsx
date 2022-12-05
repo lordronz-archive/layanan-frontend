@@ -9,13 +9,13 @@ import {
   TrafficLayer,
   useJsApiLoader,
 } from '@react-google-maps/api';
+import axios from 'axios';
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { FiInfo, FiPlus, FiX } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import { useLocalStorage, useWindowSize } from 'react-use';
+import { useWindowSize } from 'react-use';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -25,13 +25,12 @@ import Seo from '@/components/Seo';
 import { API_KEY } from '@/constant/config';
 import { mySwalOpts } from '@/constant/swal';
 import clsxm from '@/lib/clsxm';
-import customAxios from '@/lib/customAxios';
 import toFixedIfNecessary from '@/lib/toFixedIfNecessary';
 import { Prediction } from '@/types/prediction';
 
 const MySwal = withReactContent(Swal);
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = 'https://quixotic-elf-357705.et.r.appspot.com';
 
 const libraries = ['places'] as (
   | 'places'
@@ -42,15 +41,6 @@ const libraries = ['places'] as (
 )[];
 
 const Home: NextPage = () => {
-  const [token] = useLocalStorage<string>('token');
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!token) {
-      router.push('/login');
-    }
-  }, [router, token]);
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: API_KEY,
@@ -118,7 +108,7 @@ const Home: NextPage = () => {
 
     try {
       await toast.promise(
-        customAxios.post<Prediction>(`${API_URL}/predict/`, payload),
+        axios.post<Prediction>(`${API_URL}/predict/`, payload),
         {
           pending: {
             render: () => {

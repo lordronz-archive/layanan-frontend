@@ -9,6 +9,7 @@ import Button from '@/components/buttons/Button';
 import StyledInput from '@/components/forms/StyledInput';
 import Layout from '@/components/layout/Layout';
 import ArrowLink from '@/components/links/ArrowLink';
+import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import { toastStyle } from '@/constant/toast';
 import customAxios from '@/lib/customAxios';
@@ -32,7 +33,7 @@ const Login: NextPage = () => {
       {
         loading: 'Loading...',
         success: ({ data }) => {
-          setToken(data?.data?.data?.token as string);
+          setToken(data?.tokens.access.token as string);
           setTimeout(() => router.push('/'), 2000);
           return 'Logged in !';
         },
@@ -82,6 +83,12 @@ const Login: NextPage = () => {
               />
               <div className='mt-2'>
                 <Button type='submit'>Submit</Button>
+              </div>
+              <div className='mt-2'>
+                <p>
+                  No account?{' '}
+                  <CustomLink href='/register'>Register here</CustomLink>
+                </p>
               </div>
             </form>
 

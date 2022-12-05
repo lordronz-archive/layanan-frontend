@@ -14,6 +14,7 @@ customAxios.interceptors.request.use((config) => {
     ...config.headers,
     Authorization: authHeader,
   };
+  console.log(config);
   return config;
 });
 

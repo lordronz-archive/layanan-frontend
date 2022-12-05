@@ -8,6 +8,7 @@ import Button from '@/components/buttons/Button';
 import StyledInput from '@/components/forms/StyledInput';
 import Layout from '@/components/layout/Layout';
 import ArrowLink from '@/components/links/ArrowLink';
+import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import { toastStyle } from '@/constant/toast';
 import customAxios from '@/lib/customAxios';
@@ -92,6 +93,12 @@ const Register: NextPage = () => {
               />
               <div className='mt-2'>
                 <Button type='submit'>Submit</Button>
+              </div>
+              <div className='mt-2'>
+                <p>
+                  Have an account?{' '}
+                  <CustomLink href='/register'>Login here</CustomLink>
+                </p>
               </div>
             </form>
 
